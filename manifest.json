@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Ripando Plus",
+  "description": "Extensão voltada para adicionar funcionalidades e elementos que facilitam a navegação no site Ripando.com.br",
+  "version": "1.0",
+
+  "permissions": [
+    "http://*.ripando.com.br/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*.ripando.com.br/*"],
+      "js": [ "jquery.min.js", "main.js" ],
+      "css": ["main.css"]
+    }
+  ]
+}
