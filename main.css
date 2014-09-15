@@ -4,11 +4,36 @@ img.posterRow{
 	float: left;
 }
 
+.alertPlugin{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 5px 10px;
+	background-color: #FF7F00;
+	border-bottom: 1px solid #FAB169;
+	color:#fff;
+}
+
 .red{
 	background-color: red;
 }
 
-
+#news_user{
+	margin: 10px auto;
+	width: 160px;
+	display: inherit;
+	background: #013FEF;
+	color: #fff;
+	border: none;
+	padding: 10px;
+	clear: both;
+	cursor: pointer;
+	border-radius: 5px;
+}
+.news_user_div{
+	display: none;
+}
 
 
 
