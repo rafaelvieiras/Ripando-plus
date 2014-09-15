@@ -6,12 +6,17 @@
   "version": "1.0",
 
   "permissions": [
-    "http://*.ripando.com.br/*"
+    "http://*.ripando.com.br/*",
+    "storage"
   ],
+  "browser_action": {
+    //"default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": ["http://*.ripando.com.br/*"],
-      "js": [ "jquery.min.js", "main.js" ],
+      "js": [ "jquery.min.js", "main.js"],
       "css": ["main.css"]
     }
   ]

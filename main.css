@@ -4,6 +4,10 @@ img.posterRow{
 	float: left;
 }
 
+.red{
+	background-color: red;
+}
+
 
 
 
@@ -26,7 +30,7 @@ img.posterRow{
 Spinner!
 */
 .spinnerBg{
-	position: absolute;
+	position: fixed;
 	top:0;
 	left: 0;
 	width: 100%;

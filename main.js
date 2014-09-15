@@ -7,6 +7,19 @@
 // 	//$element.text("Encontrat! URL: "+url)
 // });
 
+
+
+
+
+
+
+
+
+
+
+/*----------------------------------------
+ Preview
+------------------------------------------*/
 var spinner = '<div class="spinnerBg"><div class="spinner"><div class="dot1"></div><div class="dot2"></div></div></div>';
 $("body").delay( 800 ).append(spinner);
 
@@ -47,3 +60,46 @@ if($("p.breadcrumbs:contains(Dublados)").length > 0){
         }
 	});
 }
+
+/*----------------------------------------
+ Preview - FIM
+------------------------------------------*/
+
+
+
+/*----------------------------------------
+ Infinite Scroll
+------------------------------------------*/
+
+$lancamentosLast = $(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").find("tr.row1 > td:not(.gensmall)");
+
+var pag = 1;
+var scroll = 40;
+$(window).scroll(function(){
+	if($(window).scrollTop() + $(window).height() > $(document).height() - 300) {
+		//alert("bottom!");
+		$loading.show();
+		$.ajax({
+			type: "POST",
+		    url: "./portal.php",
+		    async: false,
+  			data: { np : scroll },
+  			beforeSend: function(){
+		    	$loading.show().delay( 800 );
+		    	pag++;
+				scroll = scroll + 40;
+		   	},
+		   	complete: function(){
+		    	$loading.hide();
+		   	},
+		    success: function(data) {
+		        var html = $.parseHTML( data ), 
+		        	lancamentos = $(html).find(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").find("tr.row1 > td:not(.gensmall)").html();	        
+		        $lancamentosLast.append(lancamentos).delay( 800 );
+		    }
+		});
+		console.log(pag);
+		console.log(scroll);
+		
+	}
+});
