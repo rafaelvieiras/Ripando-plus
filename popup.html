@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head><title>My Test Extension Options</title></head>
-<body>
+<head>
+<link rel="stylesheet" type="text/css" href="popup.css"/>
+<meta charset="utf-8">
+</head>
 
+<body>
 
 <label>
   <input type="checkbox" id="preimg">
-  preImg
+  Pre-visualizar imagem no forum?
 </label>
 
 <br/>
 <label>
   <input type="checkbox" id="scroll">
-  Scroll
+  Habilitar Infinite Scroll?
 </label>
 
 <div id="status"></div>
-<button id="save">Save</button>
+<button id="save">Salvar</button>
 
+<!-- <h2>Ultimos Lançamentos:</h2>
+
+<ul>
+	<li><a href="#">Item 1</a></li>
+	<li><a href="#">Item 1</a></li>
+	<li><a href="#">Item 1</a></li>
+	<li><a href="#">Item 1</a></li>
+</ul> -->
+
+<h2>Ajude a manter o desenvolvimento:</h2>
+<p>Acesse o nosso repositorio no GitHub e contribua com alterações, sujestões, novas funcionalidades ou qualquer outra coisa:</p>
+<a href="https://github.com/rafaelvieiras/Ripando-plus" class="git"><img src="img/git.png"></a>
+
+<p>Ou se você não programa e quer ajudar, você pode me comprar um café:</p>
+
+<!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+<form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post" class="pagseguro">
+<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+<input type="hidden" name="currency" value="BRL" />
+<input type="hidden" name="receiverEmail" value="rafaelvieiras2@hotmail.com" />
+<input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/doacoes/184x42-doar-laranja-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+</form>
+<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+<p>e não esqueça de <a href="https://github.com/rafaelvieiras/Ripando-plus/issues">fazer sugestões</a>!</p>
 <script src="jquery.min.js"></script>
 <script src="settings.js"></script>
 </body>

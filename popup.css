@@ -1,0 +1,23 @@
+body{
+	min-width: 350px;
+	background-color: #EDF0F5;
+}
+h2{
+	font-size: 1em;
+}
+
+.git{
+	text-align: center;
+	width: 100%;
+	display: inherit;
+}
+
+.git img{
+	max-width: 90px;
+}
+
+.pagseguro{
+	display: inherit;
+	text-align: center;
+	width: 100%;
+}

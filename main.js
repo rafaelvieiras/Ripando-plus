@@ -12,7 +12,9 @@
 $("body").delay(800).append('<div class="alertPlugin">Vocês está usando o Ripando Plus! Ajudenos a continuar o projeto, contribua com o codigo <a href="#">aqui</a> ou me compre um <a href="#">café</a>! :D</div>');
 
 
-
+if($('.alertPlugin').is(":hidden") == false){
+	$('body').css('padding-top', '23px');
+}
 
 
 
@@ -30,18 +32,26 @@ $(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").prepend('<button 
 
 var $loading = $('.spinnerBg').hide();
 
-if($("p.breadcrumbs:contains(Dublados)").length > 0 && $('img[alt="Obrigado"]').length == 0){
-	var len = $(".topictitle").length;
+var selectPre = "p.breadcrumbs:contains(Dublados), p.breadcrumbs:contains(Legendados), p.breadcrumbs:contains(Multi Áudio), p.breadcrumbs:contains(ISO's), p.breadcrumbs:contains(Nacionais)";
+
+if($(selectPre).length > 0 && $('img[alt="Obrigado"]').length == 0){
 	$(".topictitle").each(function(index){
-		$loading.show();
-		$titleHtml = $(this);
-		var url = $titleHtml.attr("href");
-		var title = $titleHtml.text();
-		var image_tag = '';
+		var url = $(this).attr("href");
+		$this = $(".topictitle").eq(index);
 		$.ajax({ 
 		    url: url,
-		    async: false,
+		    async: true,
+		    beforeSend: function(){
+		    	$loading.show();
+		    },
+		    complete: function(){
+		    	$loading.hide();
+		    },
 		    success: function(data) {
+		    	$this = $(".topictitle").eq(index);
+
+				var title = $this.text();
+
 		        var html = $.parseHTML( data ), 
 		            img = $(html).find(".postbody").find("img"),
 		            len = img.length; 
@@ -51,18 +61,12 @@ if($("p.breadcrumbs:contains(Dublados)").length > 0 && $('img[alt="Obrigado"]').
 		            console.log("Image not found");
 		        }
 		        
-		        image_tag = '<img src="'+src+'" alt="'+title+'" class="posterRow"/>';
-		        return image_tag;
+		        image_tag = '<br/><img src="'+src+'" alt="'+title+'" class="posterRow"/>';
+		        $this.parent().append(image_tag);
+		        console.log(image_tag);
+		        console.log($this);
 		    }
 		});
-
-		console.log(image_tag);
-		$titleHtml.parent().append(image_tag);
-
-		if (index == len - 1) {
-            console.log('Last field, submit form here');
-            $loading.hide();
-        }
 	});
 }
 
@@ -167,3 +171,4 @@ $("#news_user").click(function(){
 /*----------------------------------------
  Lançamento dos Usuarios - FIM
 ------------------------------------------*/
+
