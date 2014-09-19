@@ -19,7 +19,7 @@
   "content_scripts": [
     {
       "matches": ["http://*.ripando.com.br/*"],
-      "js": [ "jquery.min.js", "main.js"],
+      "js": [ "jquery.min.js", "settings.js", "main.js"],
       "css": ["main.css"]
     }
   ]

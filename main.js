@@ -8,18 +8,18 @@
 // });
 //localStorage['ripando_plus'] = settings;
 
-if (typeof "get_rp_storage" != 'function') 
-{
-	function get_rp_storage(item)
-	{
-	    var rp_items = JSON.parse(localStorage['ripando_plus']) || settings;
+// if (typeof "get_rp_storage" != 'function') 
+// {
+// 	function get_rp_storage(item)
+// 	{
+// 	    var rp_items = JSON.parse(localStorage['ripando_plus']) || settings;
 
-	    return rp_items[item] || null;
-	}
-}
+// 	    return rp_items[item] || null;
+// 	}
+// }
 
 
-$("body").delay(800).append('<div class="alertPlugin">Vocês está usando o Ripando Plus! Ajudenos a continuar o projeto, contribua com o codigo <a href="#">aqui</a> ou me compre um <a href="#">café</a>! :D</div>');
+$("body").delay(800).append('<div class="alertPlugin">Vocês está usando o Ripando Plus! Ajudenos a continuar o projeto, contribua com o codigo <a target="_blank" href="https://github.com/rafaelvieiras/Ripando-plus">aqui</a> ou me compre um café indo no popup do plugin, ali na direita! :D</div>');
 
 
 if($('.alertPlugin').is(":hidden") == false){
@@ -36,6 +36,7 @@ if($('.alertPlugin').is(":hidden") == false){
 /*----------------------------------------
  Preview
 ------------------------------------------*/
+//alert(get_rp_storage('rp_preimg'));
 if (get_rp_storage('rp_preimg')==true){
 
 var spinner = '<div class="spinnerBg"><div class="spinner"><div class="dot1"></div><div class="dot2"></div></div></div>';
