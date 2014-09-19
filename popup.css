@@ -21,3 +21,10 @@ h2{
 	text-align: center;
 	width: 100%;
 }
+
+.rp_form{}
+.rp_form label{}
+.rp_form label > span.label_text{}
+.rp_form input{}
+.rp_messages{}
+.rp_messages > #status{}

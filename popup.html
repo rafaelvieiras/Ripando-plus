@@ -7,19 +7,30 @@
 
 <body>
 
-<label>
-  <input type="checkbox" id="preimg">
-  Pre-visualizar imagem no forum?
-</label>
+    <strong>Ripando Plus - Configurações</strong>
 
-<br/>
-<label>
-  <input type="checkbox" id="scroll">
-  Habilitar Infinite Scroll?
-</label>
+    <div class="rp_messages">
+        <div id="status"></div>
+    </div>
 
-<div id="status"></div>
-<button id="save">Salvar</button>
+    <form id="form_settings" class="rp_form">
+        
+        <label>
+          <input type="checkbox" id="rp_preimg" name="rp_preimg">
+          <span class="label_text">Pre-visualizar imagem no forum?</span>
+        </label>
+        
+        <br/>
+        <label>
+          <input type="checkbox" id="rp_scroll" name="rp_scroll">
+          <span class="label_text">Habilitar Infinite Scroll?</span>
+        </label>
+
+        <br/>
+        <button type="button" id="save">Save</button>
+    </form>
+
+    <hr>
 
 <!-- <h2>Ultimos Lançamentos:</h2>
 

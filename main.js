@@ -6,7 +6,17 @@
 // 	//console.log(url);
 // 	//$element.text("Encontrat! URL: "+url)
 // });
+//localStorage['ripando_plus'] = settings;
 
+if (typeof "get_rp_storage" != 'function') 
+{
+	function get_rp_storage(item)
+	{
+	    var rp_items = JSON.parse(localStorage['ripando_plus']) || settings;
+
+	    return rp_items[item] || null;
+	}
+}
 
 
 $("body").delay(800).append('<div class="alertPlugin">Vocês está usando o Ripando Plus! Ajudenos a continuar o projeto, contribua com o codigo <a href="#">aqui</a> ou me compre um <a href="#">café</a>! :D</div>');
@@ -26,6 +36,8 @@ if($('.alertPlugin').is(":hidden") == false){
 /*----------------------------------------
  Preview
 ------------------------------------------*/
+if (get_rp_storage('rp_preimg')==true){
+
 var spinner = '<div class="spinnerBg"><div class="spinner"><div class="dot1"></div><div class="dot2"></div></div></div>';
 $("body").append(spinner);
 $(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").prepend('<button id="news_user">Novidades dos Usuarios</button><div class="news_user_div">Aguarde...</div>');
@@ -70,6 +82,7 @@ if($(selectPre).length > 0 && $('img[alt="Obrigado"]').length == 0){
 	});
 }
 
+} // rp_preimg
 /*----------------------------------------
  Preview - FIM
 ------------------------------------------*/
@@ -79,7 +92,8 @@ if($(selectPre).length > 0 && $('img[alt="Obrigado"]').length == 0){
 /*----------------------------------------
  Infinite Scroll
 ------------------------------------------*/
-
+if (get_rp_storage('rp_scroll')==true){
+	
 $lancamentosLast = $(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").find("tr.row1 > td:not(.gensmall)");
 
 
@@ -116,6 +130,7 @@ $(window).scroll(function(){
 	}
 });
 
+} // rp_scroll
 
 
 /*----------------------------------------
