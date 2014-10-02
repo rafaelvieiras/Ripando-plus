@@ -73,9 +73,14 @@ if($(selectPre).length > 0 && $('img[alt="Obrigado"]').length == 0){
 		        } else {
 		            console.log("Image not found");
 		        }
+
+		        var re_body = /<img src="[0-9A-Za-z\/\.]?styles\/etech\/imageset\/post_informacoes\.png"><\/img><\/center>(.*)<center><img src="[0-9A-Za-z\/\.]?styles\/etech\/imageset\/post_download\.png">/i;
+		        var html_only_infos = re_body.exec(data);
+		        //console.log(html_only_infos[1]);
 		        
 		        image_tag = '<br/><img src="'+src+'" alt="'+title+'" class="posterRow"/>';
 		        $this.parent().append(image_tag);
+		        $this.parent().append($.parseHTML(html_only_infos[1]));
 		        console.log(image_tag);
 		        console.log($this);
 		    }
