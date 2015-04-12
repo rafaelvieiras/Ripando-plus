@@ -1,34 +1,10 @@
-// $(".tablebg > tbody > tr td:eq(3)").each(function(){
-// 	$(this).css("border", "1px solid red");
-
-// 	//$element = $(this).find("a");
-// 	//var url = $element.attr("href");
-// 	//console.log(url);
-// 	//$element.text("Encontrat! URL: "+url)
-// });
-//localStorage['ripando_plus'] = settings;
-
-// if (typeof "get_rp_storage" != 'function') 
-// {
-// 	function get_rp_storage(item)
-// 	{
-// 	    var rp_items = JSON.parse(localStorage['ripando_plus']) || settings;
-
-// 	    return rp_items[item] || null;
-// 	}
-// }
-
-
-$("body").delay(800).append('<div class="alertPlugin">Vocês está usando o Ripando Plus! Ajudenos a continuar o projeto, contribua com o codigo <a target="_blank" href="https://github.com/rafaelvieiras/Ripando-plus">aqui</a> ou me compre um café indo no popup do plugin, ali na direita! :D</div>');
-
-
-if($('.alertPlugin').is(":hidden") == false){
-	$('body').css('padding-top', '23px');
-}
-
-
-
-
+var $loading = $('.spinnerBg');
+var slend = '<div class="spinnerBg"><div class="spinner"><div class="dot1"></div><div class="dot2"></div></div></div>';
+slend += '<a class="alertPlugin" href="https://github.com/rafaelvieiras/Ripando-plus" target="_blank"><img alt="Ripando Plus" src="http://i.imgur.com/ZE5HrE0.png" height="64"></a>';
+$("body").append(slend);
+//$("body").delay(800).append('<div class="alertPlugin">Vocês está usando o Ripando Plus! Ajudenos a continuar o projeto, contribua com o codigo <a target="_blank" href="https://github.com/rafaelvieiras/Ripando-plus">aqui</a> ou me compre um café indo no popup do plugin, ali na direita! :D</div>');
+var iconurl = chrome.extension.getURL("img/icon.png");
+$("body").append();
 
 
 
@@ -36,59 +12,53 @@ if($('.alertPlugin').is(":hidden") == false){
 /*----------------------------------------
  Preview
 ------------------------------------------*/
-//alert(get_rp_storage('rp_preimg'));
-if (get_rp_storage('rp_preimg')==true){
+function previewImg() {
+	console.log("Preview Init");
+	$(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").prepend('<button id="news_user">Novidades dos Usuarios</button><div class="news_user_div">Aguarde...</div>');
 
-var spinner = '<div class="spinnerBg"><div class="spinner"><div class="dot1"></div><div class="dot2"></div></div></div>';
-$("body").append(spinner);
-$(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").prepend('<button id="news_user">Novidades dos Usuarios</button><div class="news_user_div">Aguarde...</div>');
+	var selectPre = "p.breadcrumbs:contains(Dublados), p.breadcrumbs:contains(Legendados), p.breadcrumbs:contains(Multi Áudio), p.breadcrumbs:contains(ISO's), p.breadcrumbs:contains(Nacionais)";
 
-var $loading = $('.spinnerBg').hide();
+	if($(selectPre).length > 0 && $('img[alt="Obrigado"]').length == 0){
+		$(".topictitle").each(function(index){
+			var url = $(this).attr("href");
+			$this = $(".topictitle").eq(index);
+			$.ajax({ 
+			    url: url,
+			    async: true,
+			    beforeSend: function(){
+			    	$loading.show();
+			    },
+			    complete: function(){
+			    	$loading.hide();
+			    },
+			    success: function(data) {
+			    	$this = $(".topictitle").eq(index);
 
-var selectPre = "p.breadcrumbs:contains(Dublados), p.breadcrumbs:contains(Legendados), p.breadcrumbs:contains(Multi Áudio), p.breadcrumbs:contains(ISO's), p.breadcrumbs:contains(Nacionais)";
+					var title = $this.text();
 
-if($(selectPre).length > 0 && $('img[alt="Obrigado"]').length == 0){
-	$(".topictitle").each(function(index){
-		var url = $(this).attr("href");
-		$this = $(".topictitle").eq(index);
-		$.ajax({ 
-		    url: url,
-		    async: true,
-		    beforeSend: function(){
-		    	$loading.show();
-		    },
-		    complete: function(){
-		    	$loading.hide();
-		    },
-		    success: function(data) {
-		    	$this = $(".topictitle").eq(index);
+			        var html = $.parseHTML( data ), 
+			            img = $(html).find(".postbody").find("img"),
+			            len = img.length; 
+			        if( len > 0 ){
+			            var src = img.first().attr("src");
+			        } else {
+			            console.log("Image not found");
+			        }
 
-				var title = $this.text();
-
-		        var html = $.parseHTML( data ), 
-		            img = $(html).find(".postbody").find("img"),
-		            len = img.length; 
-		        if( len > 0 ){
-		            var src = img.first().attr("src");
-		        } else {
-		            console.log("Image not found");
-		        }
-
-		        var re_body = /<img src="[0-9A-Za-z\/\.]?styles\/etech\/imageset\/post_informacoes\.png"><\/img><\/center>(.*)<center><img src="[0-9A-Za-z\/\.]?styles\/etech\/imageset\/post_download\.png">/i;
-		        var html_only_infos = re_body.exec(data);
-		        //console.log(html_only_infos[1]);
-		        
-		        image_tag = '<br/><img src="'+src+'" alt="'+title+'" class="posterRow"/>';
-		        $this.parent().append(image_tag);
-		        $this.parent().append($.parseHTML(html_only_infos[1]));
-		        console.log(image_tag);
-		        console.log($this);
-		    }
+			        var re_body = /<img src="[0-9A-Za-z\/\.]?styles\/etech\/imageset\/post_informacoes\.png"><\/img><\/center>(.*)<center><img src="[0-9A-Za-z\/\.]?styles\/etech\/imageset\/post_download\.png">/i;
+			        var html_only_infos = re_body.exec(data);
+			        //console.log(html_only_infos[1]);
+			        
+			        image_tag = '<br/><img src="'+src+'" alt="'+title+'" class="posterRow"/>';
+			        $this.parent().append(image_tag);
+			        $this.parent().append($.parseHTML(html_only_infos[1]));
+			        console.log(image_tag);
+			        console.log($this);
+			    }
+			});
 		});
-	});
+	}
 }
-
-} // rp_preimg
 /*----------------------------------------
  Preview - FIM
 ------------------------------------------*/
@@ -98,50 +68,52 @@ if($(selectPre).length > 0 && $('img[alt="Obrigado"]').length == 0){
 /*----------------------------------------
  Infinite Scroll
 ------------------------------------------*/
-if (get_rp_storage('rp_scroll')==true){
-	
-$lancamentosLast = $(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").find("tr.row1 > td:not(.gensmall)");
+function infiniteScroll(){
+	console.log("Scroll Init");
+	$lancamentosLast = $(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").find("tr.row1 > td:not(.gensmall)");
 
 
-var pag = 1;
-var scroll = 40;
-$(window).scroll(function(){
-	if($('.news_user_div').is(":hidden") == true){
-		if($(window).scrollTop() + $(window).height() > $(document).height() - 300) {
-			//alert("bottom!");
-			$loading.show();
-			$.ajax({
-				type: "POST",
-			    url: "./portal.php",
-			    async: false,
-	  			data: { np : scroll },
-	  			beforeSend: function(){
-			    	$loading.show().delay( 800 );
-			    	pag++;
-					scroll = scroll + 40;
-			   	},
-			   	complete: function(){
-			    	$loading.hide();
-			   	},
-			    success: function(data) {
-			        var html = $.parseHTML( data ), 
-			        	lancamentos = $(html).find(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").find("tr.row1 > td:not(.gensmall)").html();	        
-			        $lancamentosLast.append(lancamentos).delay( 800 );
-			    }
-			});
-			console.log(pag);
-			console.log(scroll);
-			
+	var pag = 1;
+	var scroll = 40;
+	$(window).scroll(function(){
+		if($('.news_user_div').is(":hidden") == true){
+			if($(window).scrollTop() + $(window).height() > $(document).height() - 300) {
+				//alert("bottom!");
+				$loading.show();
+				$.ajax({
+					type: "POST",
+				    url: "./portal.php",
+				    async: false,
+		  			data: { np : scroll },
+		  			beforeSend: function(){
+				    	$loading.show().delay( 800 );
+				    	pag++;
+						scroll = scroll + 40;
+				   	},
+				   	complete: function(){
+				    	$loading.hide();
+				   	},
+				    success: function(data) {
+				        var html = $.parseHTML( data ), 
+				        	lancamentos = $(html).find(".tablebg:contains(Últimos Lançamentos)").next(".tablebg").find("tr.row1 > td:not(.gensmall)").html();	        
+				        $lancamentosLast.append(lancamentos).delay( 800 );
+				    }
+				});
+				console.log(pag);
+				console.log(scroll);
+				
+			}
 		}
-	}
-});
+	});
 
-} // rp_scroll
-
-
+}
 /*----------------------------------------
  Infinite Scroll - FIM
 ------------------------------------------*/
+
+
+
+
 
 
 
@@ -192,4 +164,30 @@ $("#news_user").click(function(){
 /*----------------------------------------
  Lançamento dos Usuarios - FIM
 ------------------------------------------*/
+
+
+
+
+
+chrome.storage.sync.get({ preImg: true, trueScroll: true }, function(data) {
+	console.log(data);
+	if(data.preImg == true){ 
+		previewImg();
+	}
+	if(data.trueScroll == true){ 
+		infiniteScroll();
+	}
+});
+
+
+
+
+
+
+
+
+
+
+
+
 

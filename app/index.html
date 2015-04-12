@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Ripando Plus</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Ripando Plus</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/app/index.html">Inicio</a></li>
+        <li><a href="/app/options.html">Opçõoes</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#sobre">Sobre</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+<div class="container main">
+
+<div class="jumbotron">
+  <h1>Bem-vindo ao Ripando Plus</h1>
+  <p>Ripando Plus é uma extensão voltada para adicionar funcionalidades e elementos que facilitam a navegação no site Ripando.com.br</p>
+  <p><a class="btn btn-primary btn-lg" target="_blank" href="https://github.com/rafaelvieiras/Ripando-plus" role="button">Entanda o projeto</a></p>
+</div>
+
+
+<div class="col-md-4">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Configuarações Básicas</div>
+	  <div class="panel-body">
+	  	<div class="rp_messages">
+        	<div id="status"></div>
+    	</div>
+	    <label>
+	      <input type="checkbox" id="rp_preimg">
+	      <span class="label_text">Pre-visualizar imagem no forum?</span>
+	    </label>
+	    
+	    <br/>
+	    <label>
+	      <input type="checkbox" id="rp_scroll">
+	      <span class="label_text">Habilitar Infinite Scroll?</span>
+	    </label>
+
+	    <br/>
+	    <button id="save">Salvar</button>
+	  </div>
+	</div>
+</div>
+
+<div class="col-md-4">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Ultimas Novidades</div>
+	  <div class="panel-body">
+	  	<ul class="feed"></ul>
+	  </div>
+	</div>
+</div>
+<div class="col-md-4">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Ajude a manter o desenvolvimento</div>
+	  <div class="panel-body">
+		<p>Acesse o nosso repositorio no GitHub e contribua com alterações, sujestões, novas funcionalidades ou qualquer outra coisa:</p>
+		<a target="_blank" href="https://github.com/rafaelvieiras/Ripando-plus" class="git"><img src="../img/git.png" class="img-responsive"></a>
+
+		<p>Ou se você não programa e quer ajudar, você pode me comprar um café:</p>
+
+		<!-- INICIO FORMULARIO BOTAO PAGSEGURO -->
+		<form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" method="post" class="pagseguro">
+		<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
+		<input type="hidden" name="currency" value="BRL" />
+		<input type="hidden" name="receiverEmail" value="rafaelvieiras2@hotmail.com" />
+		<input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/doacoes/184x42-doar-laranja-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+		</form>
+		<!-- FINAL FORMULARIO BOTAO PAGSEGURO -->
+		<p>e não esqueça de <a target="_blank" href="https://github.com/rafaelvieiras/Ripando-plus/issues">fazer sugestões</a>!</p>
+	</div>
+</div>
+
+  
+</div><!-- /.container -->
+	<!-- script references -->
+		<script src="../jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="../settings.js"></script>
+	</body>
+</html>
